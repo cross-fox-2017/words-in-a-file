@@ -2,12 +2,15 @@
 var fs = require('fs')
 // actual conversion code starts here
 
+//fungsi pembaca txt file
 function baca (text){
   var bacaan = fs.readFileSync(text, "utf8", (err, data) => {
   if (err) throw err;
   });
   return bacaan
 }
+
+//membersihkan yang selain kata
 function bersihkan(text){
   var texted = baca(text)
   texted = texted.replace(/[^A-z]+/gi, " ")
@@ -22,24 +25,11 @@ function bersihkan(text){
   return bersih
 }
 
+ //memisahkan angka dan string plus bonus kata2 penutup
 function getloop (katasatu){
   var angkanya = katasatu.length+2 - katasatu.indexOf(1);
   katasatu = katasatu.substring(0, katasatu.indexOf(1));
-  return [angkanya, "Kali kemunculan kata" , katasatu]
-}
-
-function sorting(myWord){
-  var temp = ""
-  for (var i = 0; i < myWord.length; i++) {
-    for (var j = 0; j < myWord[i].length; j++) {
-      if (myWord[i] < myWord[j]){
-        temp = myWord[j]
-        myWord[j] = myWord[i]
-        myWord[i] = temp
-      }
-    }
-  }
-  return myWord
+  return [angkanya, "Kali kemunculan kata :" , katasatu]
 }
 
 function most_common_words(text, jumlah){
@@ -48,6 +38,9 @@ function most_common_words(text, jumlah){
   for (var i = 0; i < texted.length; i++){
     if (olah == []){
       olah.push(texted[i])
+      //kata hubung yang coba dihilangkan masukkan di if dibawah
+    } else if (texted[i] == "a" || texted[i] == "the" || texted[i] == "of" || texted[i] == "ref"){
+      // batas penghubung yang dibuang
     } else if (texted[i] == texted[i-1]){
       olah[olah.length-1] = olah[olah.length-1] + "1"
     } else if (texted[i] != texted[i-1]) {
