@@ -1,9 +1,41 @@
-var sys = require('sys');
+// var sys = require('sys');
 var fs = require('fs')
 // actual conversion code starts here
-var arrData = [];
-fs.readFile('source.txt', "utf8", (err, data) => {
+
+function baca (text){
+  var bacaan = fs.readFileSync(text, "utf8", (err, data) => {
   if (err) throw err;
-  data = data.split(" ")
-  console.log(data);
-});
+  });
+  return bacaan
+}
+function bersihkan(text){
+  var texted = baca(text)
+  texted = texted.replace(/[^A-z]+/gi, " ")
+  texted = texted.replace(/\[|\]/gi, " ")
+  texted = texted.split(" ").sort();
+  var bersih = []
+  for (var i = 0; i < texted.length; i++) {
+    if (texted[i] != "" && texted[i].length > 1){
+      bersih.push(texted[i])
+    }
+  }
+  return bersih
+}
+function most_common_words(text, jumlah){
+  var texted = bersihkan(text)
+  return texted
+}
+// function filter (){
+//   data = data.split(" ")
+//   var databaru = []
+//   for (var i = 0; i < data.length; i++){
+//     if ((/\w\w+/gi).test(data[i]) == true){
+//       databaru.push(data[i])
+//     }
+//   }
+//   console.log(data.length);
+//   return databaru
+// }
+
+// console.log(filter());
+console.log(most_common_words('source.txt', 3));
