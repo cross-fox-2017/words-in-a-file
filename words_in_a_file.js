@@ -25,7 +25,7 @@ function bersihkan(text){
 function getloop (katasatu){
   var angkanya = katasatu.length+2 - katasatu.indexOf(1);
   katasatu = katasatu.substring(0, katasatu.indexOf(1));
-  return [angkanya, katasatu]
+  return [angkanya, "Kali kemunculan kata" , katasatu]
 }
 
 function sorting(myWord){
@@ -69,10 +69,9 @@ function most_common_words(text, jumlah){
       reallysort.push(sorted[z])
     }
   }
-  hasil = reallysort.sort().reverse().splice(0, jumlah)
-  return hasil
+  hasil = reallysort.sort().reverse().splice(0, jumlah).join("\n")
+  return hasil.replace(/,/g," ")
 }
 
 
 console.log(most_common_words('source.txt', 3));
-// console.log(getloop('Middle111111'));
