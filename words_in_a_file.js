@@ -21,6 +21,13 @@ function bersihkan(text){
   }
   return bersih
 }
+
+function getloop (katasatu){
+  var angkanya = katasatu.length+2 - katasatu.indexOf(1);
+  katasatu = katasatu.substring(0, katasatu.indexOf(1));
+  return angkanya + " " + katasatu
+}
+
 function most_common_words(text, jumlah){
   var texted = bersihkan(text)
   var olah = []
@@ -28,24 +35,23 @@ function most_common_words(text, jumlah){
     if (olah == []){
       olah.push(texted[i])
     } else if (texted[i] == texted[i-1]){
-      olah[olah.length-1] = olah[olah.length-1] + "1" 
+      olah[olah.length-1] = olah[olah.length-1] + "1"
     } else if (texted[i] != texted[i-1]) {
       olah.push(texted[i])
     }
   }
-  return olah
+  var sorted = [];
+  for (var i = 0; i < olah.length; i++) {
+    if (olah[i].indexOf(1) != -1){
+      sorted.push(olah[i])
+    }
+  }
+    for (var k = 0; k < sorted.length; k++){
+      sorted[k] = getloop(sorted[k])
+    }
+  return sorted
 }
-// function filter (){
-//   data = data.split(" ")
-//   var databaru = []
-//   for (var i = 0; i < data.length; i++){
-//     if ((/\w\w+/gi).test(data[i]) == true){
-//       databaru.push(data[i])
-//     }
-//   }
-//   console.log(data.length);
-//   return databaru
-// }
 
-// console.log(filter());
+
 console.log(most_common_words('source.txt', 3));
+// console.log(getloop('Middle111111'));
