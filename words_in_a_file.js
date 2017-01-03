@@ -56,6 +56,7 @@ function most_common_words(text, jumlah){
   for (var k = 0; k < sorted.length; k++){
     sorted[k] = getloop(sorted[k])
   }
+  //digunakan saat paragraph panjang (untuk menghindari sort yang dianggap string)
   var reallysort = []
   for (var z = 0; z < sorted.length; z++){
     if (sorted[z][0] > 100){
@@ -68,3 +69,4 @@ function most_common_words(text, jumlah){
 
 
 console.log(most_common_words('source.txt', 3));
+// console.log(most_common_words('viggie.txt', 3));
