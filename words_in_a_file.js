@@ -25,7 +25,21 @@ function bersihkan(text){
 function getloop (katasatu){
   var angkanya = katasatu.length+2 - katasatu.indexOf(1);
   katasatu = katasatu.substring(0, katasatu.indexOf(1));
-  return angkanya + " " + katasatu
+  return [angkanya, katasatu]
+}
+
+function sorting(myWord){
+  var temp = ""
+  for (var i = 0; i < myWord.length; i++) {
+    for (var j = 0; j < myWord[i].length; j++) {
+      if (myWord[i] < myWord[j]){
+        temp = myWord[j]
+        myWord[j] = myWord[i]
+        myWord[i] = temp
+      }
+    }
+  }
+  return myWord
 }
 
 function most_common_words(text, jumlah){
@@ -46,10 +60,17 @@ function most_common_words(text, jumlah){
       sorted.push(olah[i])
     }
   }
-    for (var k = 0; k < sorted.length; k++){
-      sorted[k] = getloop(sorted[k])
+  for (var k = 0; k < sorted.length; k++){
+    sorted[k] = getloop(sorted[k])
+  }
+  var reallysort = []
+  for (var z = 0; z < sorted.length; z++){
+    if (sorted[z][0] > 100){
+      reallysort.push(sorted[z])
     }
-  return sorted
+  }
+  hasil = reallysort.sort().reverse().splice(0, jumlah)
+  return hasil
 }
 
 
