@@ -39,7 +39,8 @@ function most_common_words(text, jumlah){
     if (olah == []){
       olah.push(texted[i])
       //kata hubung yang coba dihilangkan masukkan di if dibawah
-    } else if (texted[i] == "a" || texted[i] == "the" || texted[i] == "of" || texted[i] == "ref"){
+    } else if (texted[i] == "a" || texted[i] == "the" || texted[i] == "of" || texted[i] == "ref" || texted[i] == "and" || texted[i] == "in" || texted[i] == "on"
+    || texted[i] == "to" || texted[i] == "at" || texted[i] == "for"){
       // batas penghubung yang dibuang
     } else if (texted[i] == texted[i-1]){
       olah[olah.length-1] = olah[olah.length-1] + "1"
@@ -59,7 +60,8 @@ function most_common_words(text, jumlah){
   //digunakan saat paragraph panjang (untuk menghindari sort yang dianggap string)
   var reallysort = []
   for (var z = 0; z < sorted.length; z++){
-    if (sorted[z][0] > 100){
+    //masih harus diganti angka dibawah ini untuk mendapat sort yg bagus
+    if (sorted[z][0] > 9){
       reallysort.push(sorted[z])
     }
   }
@@ -68,5 +70,7 @@ function most_common_words(text, jumlah){
 }
 
 
-console.log(most_common_words('source.txt', 3));
-// console.log(most_common_words('viggie.txt', 3));
+// console.log(most_common_words('source.txt', 3));
+console.log(most_common_words('viggie.txt', 3));
+console.log(most_common_words('cat.txt', 3));
+console.log(most_common_words('hipster.txt', 3));
