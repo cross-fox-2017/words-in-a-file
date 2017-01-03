@@ -23,7 +23,17 @@ function bersihkan(text){
 }
 function most_common_words(text, jumlah){
   var texted = bersihkan(text)
-  return texted
+  var olah = []
+  for (var i = 0; i < texted.length; i++){
+    if (olah == []){
+      olah.push(texted[i])
+    } else if (texted[i] == texted[i-1]){
+      olah[olah.length-1] = olah[olah.length-1] + "1" 
+    } else if (texted[i] != texted[i-1]) {
+      olah.push(texted[i])
+    }
+  }
+  return olah
 }
 // function filter (){
 //   data = data.split(" ")
