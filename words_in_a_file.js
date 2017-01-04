@@ -1,8 +1,9 @@
 var fs = require('fs');
 
-fs.readFile('test.txt','utf8', function(err,arr){
+fs.readFile('source.txt','utf8', function(err,arr){
 
-  let data = arr.split("\r\n").join("");
+  let data = arr.replace(/[\n,\r]/g," ").trim().split(/\s+/g);
+
   //let data = data1.split(" ");
 
   var table ={};
